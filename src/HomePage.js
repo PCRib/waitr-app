@@ -8,10 +8,10 @@ export default class HomePage  extends Component{
                 <div id="logo" className="logo animated fadeOut"></div>
                 <div className="sign-up__box animated fadeIn container">
                     <form>
-                        <input onClick={this.props.handleOpen} type="submit" className="submit-btn" value="Sign Up"/>
+                        <input onClick={this.props.handleWaitrOpen} type="submit" className="submit-btn" value="Sign Up"/>
                     </form>
                 </div>
-                <WaitrModal isOpen={this.props.isOpen} handleClose={this.props.handleClose} handleOpen={this.props.handleOpen}/>
+                <WaitrModal isWaitrOpen={this.props.isWaitrOpen} handleClose={this.props.handleClose} handleOpen={this.props.handleOpen}/>
             </div>
         )
     }

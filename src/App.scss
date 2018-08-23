@@ -30,7 +30,7 @@ $profiletextcolor: #FFFFFF;
 .main-section{
     // background:#f3f3f3;
     background:$boxcolor;
-    height:90%;
+    height:82%;
     overflow: scroll;
     // flex: 1;
     // min-height: 100vh;
@@ -79,9 +79,24 @@ p{
   display: flex;
   width: 100%;
   height:100%;
-  justify-content: space-around;
+  justify-content: center;
   color: $profiletextcolor;
   align-content: center;
+  a{
+    display: flex;
+    align-items: center;
+    // margin: 0 0 0 8em;
+    img{
+      width: 3em;
+    }
+    .profile_icon{
+      width:1.5em;
+      position: absolute;
+      right: 30px;
+      transform: translateY(-50%);
+      top: 5%;
+    }
+  }
   .section-tab{
     // width: 25%;
     display: flex;
@@ -200,7 +215,8 @@ p{
     background: #ffffff;
     border: none;
     height: 3em;
-    width: 10em;
+    width: 26em;
+    margin: 1em 0 0 3em;
     border-radius: 20px;
     color: #01d3b5;
     outline:none;
@@ -221,6 +237,9 @@ p{
     outline:none;
     box-shadow: 5px 8px 20px -8px rgba(0, 0, 0, 0.36)
   }
+}
+.first-content__box{
+  margin: 0 1em 0 0;
 }
 .event-details{
   padding: 1em;
@@ -292,7 +311,7 @@ p{
 }
 
 .waitr-details__name{
-  margin: 0.5em 0 0 0;
+  margin: 0;
   color:$textcolor;
 }
 .waitr-details__position{
@@ -508,6 +527,7 @@ p{
   font-size:0.75em;
   // text-align: center
 }
+
 // .App-logo {
 //   animation: App-logo-spin infinite 20s linear;
 //   height: 80px;
@@ -574,7 +594,7 @@ p{
       border: none;
       height: 3em;
       width: 10em;
-      border-radius: 20px;
+      border-radius:5px;
       color: #ffffff;
       outline: none;
       -webkit-box-shadow: 5px 8px 20px -8px rgba(0, 0, 0, 0.36);

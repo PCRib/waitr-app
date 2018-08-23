@@ -11,34 +11,25 @@ import waitrs_needed_icon from "./images/waitrs_needed_icon.svg"
 import event_time_icon from "./images/event_time_icon.svg"
 
 export default class EventModal extends Component {
-    postNewEvent = (e) => {
+    postNewWaitr = (e) => {
         e.preventDefault();
-        const event_location  = e.target.eventLocation.value;
-        const event_address = e.target.eventAddress.value;
-        const event_client = e.target.eventClient.value;
-        const event_time = e.target.eventTime.value;
-        const event_date = e.target.eventDate.value;
-        const event_type = e.target.eventType.value;
-        const waitrs_scheduled = e.target.waitrsScheduled.value;
-        const attire = e.target.waitrAttire.value;
-        const hourly_rate = e.target.hourlyRate.value;
-        const event_price = e.target.eventPrice.value;
+        const name  = e.target.waitrName.value;
+        const waitr_type = e.target.waitrType.value;
+        const biography = e.target.biography.value;
+        const skills = e.target.skills.value;
+        const rating = e.target.rating.value;
+        // const availability = e.target.availability.value;
 
-        const newEvent = {
-            event_location: event_location,
-            event_address: event_address,
-            event_client: event_client,
-            event_date: event_date,
-            event_time: event_time,
-            event_type: event_type ,
-            waitrs_scheduled: waitrs_scheduled,
-            attire: attire,
-            hourly_rate: hourly_rate,
-            event_price: event_price
+        const newWaitr = {
+            name: name ,
+            waitr_type: waitr_type,
+            biography: biography,
+            skills: skills,
+            rating: rating 
         };
-        fetch('http://localhost:3001/events',{
+        fetch('http://10.32.14.203:3001/waitrs',{
             method:"post",
-            body:JSON.stringify(newEvent),
+            body:JSON.stringify(newWaitr),
             headers:{
                 'Content-Type':"application/json"
             }
@@ -46,12 +37,14 @@ export default class EventModal extends Component {
         .then(resp => resp.json(
         ))
         .then(result => {
+            localStorage.setItem('waitrToken',`${result._id}`);
             window.location.pathname ="/events"
         })
     }
     render() {
+        
         return (
-            <div style={{...flex, display: this.props.isOpen ? 'flex' : 'none'}}>
+            <div style={{...flex, display: this.props.isWaitrOpen ? 'flex' : 'none'}}>
                 <div className='modal-layer' onClick={this.props.handleClose} style={{...modalLayer}}></div>
                 <div className="form-modal" style={formModal}>
                     <div className="modal-header" style={modalHeader}>
@@ -59,52 +52,36 @@ export default class EventModal extends Component {
                             <span onClick={this.props.handleClose}>Close</span>
                         </div>
                     </div>
-                    <h6 style={modalHeaderH6}>Add new event</h6>
-                        <form onSubmit={this.postNewEvent}>
+                    <h6 style={modalHeaderH6}>Welcome New Waitr!</h6>
+                        <form onSubmit={this.postNewWaitr}>
                             <div className="add-new__event">
                                 <div className="input-box">
                                     <img src={event_location_icon}/>
-                                    <input type="text" placeholder="Event Location" name="eventLocation"/>
+                                    <input type="text" placeholder="Full Name" name="waitrName"/>
                                 </div>
                                 <div className="input-box">
                                     <img src={event_address_icon}/>
-                                    <input type="text" placeholder="Event Address" name="eventAddress"/>
+                                    <input type="text" placeholder="Bartendr or Waitr?" name="waitrType"/>
                                 </div>
                                 <div className="input-box">
                                     <img src={client_icon}/>
-                                    <input type="text" placeholder="Client Name" name="eventClient"/>
+                                    <input type="text" placeholder="A little about yourself" name="biography"/>
                                 </div>
                                 <div className="input-box">
                                     <img src={event_time_icon}/>
-                                    <input type="text" placeholder="Event Time" name="eventTime"/>
+                                    <input type="text" placeholder="One Skill about yourself" name="skills"/>
                                 </div>
                                 <div className="input-box">
                                     <img src={event_date_icon}/>
-                                    <input type="text" placeholder="Event Date" name="eventDate"/>
-                                </div>
-                                <div className="input-box">
-                                    <img src={event_type_icon}/>
-                                    <input type="text" placeholder="Type of Event" name="eventType"/>
+                                    <input type="text" placeholder="How would you rate yourself out of 5" name="rating"/>
                                 </div>
                                 <div className="input-box">
                                     <img src={waitrs_needed_icon}/>
-                                    <input type="text" placeholder="Waitrs Needed" name="waitrsScheduled"/>
-                                </div>
-                                <div className="input-box">
-                                    <img src={attire_icon}/>
-                                    <input type="text" placeholder="Event Attire" name="waitrAttire"/>
-                                </div>
-                                <div className="input-box">
-                                    <img src={hourly_rate_icon}/>
-                                    <input type="text" placeholder="Hourly Rate" name="hourlyRate"/>
-                                </div>
-                                <div className="input-box">
-                                    <img src={hourly_rate_icon}/>
-                                    <input type="text" placeholder="Event Price" name="eventPrice"/>
+                                    <input type="text" placeholder="When are you available?" name="availability"/>
                                 </div>
                             </div>
                             <div className="submit-new__location">
-                                <input type="submit" className="submit-btn" value="Save Location"/>
+                                <input type="submit" className="submit-btn" value="Add me to Waitr"/>
                             </div>
                         </form>
                 </div>
@@ -115,7 +92,7 @@ export default class EventModal extends Component {
 
 EventModal.propTypes = {
     handleClose: PropTypes.func.isRequired,
-    isOpen: PropTypes.bool.isRequired,
+    isWaitrOpen: PropTypes.bool.isRequired,
 };
 
 

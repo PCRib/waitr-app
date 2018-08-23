@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import './App.css';
 import MainSection from './MainSection'
 
-
+const waitrToken = localStorage.getItem("waitrToken");
 class App extends Component {
   state={
     events: [],
     waitrs: [],
     waitr_details:[],
     event_details:[],
-    isOpen: false
+    current_waitr:{
+      waitrToken:waitrToken
+    },
+    isOpen: false,
+    isWaitrOpen:false
 }
   addToEvent = () => {
     const currentEvent = this.state.event_details._id;
-    const currentWaitr = this.state.waitr_details._id;
+    const currentWaitr = this.state.current_waitr.waitrToken;
     const currentIds = {
       currentEvent: currentEvent,
       currentWaitr: currentWaitr
@@ -42,11 +46,9 @@ class App extends Component {
   }
   getTheWaitr = (id) => {
     const currentWaitr = `/waitrs/${id}`
-    console.log(id)
     fetch(currentWaitr)
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       this.setState({
         waitr_details: data
       })
@@ -63,30 +65,52 @@ class App extends Component {
   }
   getTheEvent = (id) => {
     const currentWaitr = `/events/${id}`
-    console.log(id)
     fetch(currentWaitr)
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       this.setState({
         event_details: data
       })
     })
   }
-  handleOpen = () =>{
+  handleOpen = (e) =>{
+    e.preventDefault()
     this.setState({
         isOpen:true
     })
   }
+  handleWaitrOpen = (e) =>{
+    e.preventDefault()
+    this.setState({
+        isWaitrOpen:true
+    })
+  }
   handleClose = () =>{
     this.setState({
-        isOpen:false
+        isOpen:false,
+        isWaitrOpen:false
     })
   }
   render() {
     return (
       <div className="App">
-          <MainSection addToEvent={this.addToEvent} isOpen={this.state.isOpen} handleClose={this.handleClose} handleOpen={this.handleOpen} waitrs={this.state.waitrs} events={this.state.events} event_details={this.state.event_details} waitr_details={this.state.waitr_details} getTheWaitr={this.getTheWaitr} getTheWaitrs={this.getTheWaitrs} getTheEvent={this.getTheEvent} getTheEvents={this.getTheEvents}/>
+          <MainSection 
+            addToEvent={this.addToEvent} 
+            isOpen={this.state.isOpen} 
+            isWaitrOpen={this.state.isWaitrOpen} 
+            handleClose={this.handleClose} 
+            handleOpen={this.handleOpen} 
+            handleWaitrOpen={this.handleWaitrOpen}
+            waitrs={this.state.waitrs} 
+            events={this.state.events} 
+            event_details={this.state.event_details} 
+            waitr_details={this.state.waitr_details} 
+            getTheWaitr={this.getTheWaitr} 
+            getTheWaitrs={this.getTheWaitrs} 
+            getTheEvent={this.getTheEvent} 
+            getTheEvents={this.getTheEvents}
+            current_waitr={this.state.current_waitr}
+          />
       </div>
     );
   }

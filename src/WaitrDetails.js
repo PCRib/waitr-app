@@ -8,7 +8,6 @@ import {BrowserRouter as Router, Route, Switch,Link} from 'react-router-dom';
 export default class WaitrDetails extends Component {
     componentDidMount = () => {
         const id = this.props.match.params.id
-        console.log(id)
         this.props.getTheWaitr(id)
     }
     render(){

@@ -10,8 +10,8 @@ export default class EventList  extends Component {
         const events = this.props.events
         const eventsArray = events.map(events => {
                 return(
-                        <Link to={`/events/${events._id}`}> 
-                            <EventCard events={events}/>
+                        <Link key={`${events._id}`} to={`/events/${events._id}`}> 
+                            <EventCard key={`${events._id}`} events={events}/>
                         </Link>
                 )
             })

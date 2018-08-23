@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 export default class EventDetails  extends Component {
     componentDidMount = () => {
         const id = this.props.match.params.id
-        console.log(id)
         this.props.getTheEvent(id)
     }
     render() {

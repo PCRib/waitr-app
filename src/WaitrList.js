@@ -10,8 +10,8 @@ export default class WaitrList extends Component {
         const waitrs = this.props.waitrs
         const waitrArray = waitrs.map(waitrs => {
                 return(
-                    <Link to={`/waitr/${waitrs._id}`}> 
-                        <WaitrCard waitrs={waitrs}/>
+                    <Link key={`${waitrs._id}`} to={`/waitr/${waitrs._id}`}> 
+                        <WaitrCard  waitrs={waitrs}/>
                     </Link>
                 )
             })

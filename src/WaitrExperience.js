@@ -57,19 +57,19 @@ render(){
                     <span>Work Experience</span>
                         <div className="waitr-details__experience-boxes">
                         <div className="waitr-details_experience-box_events">
-                            <span className="waitr-details__experience-number">{events_worked}</span>
+                            <span className="waitr-details__experience-number">{events_worked ? events_worked : 0}</span>
                             <span className="waitr-details__experience-title">Events Worked</span>
                     </div>
                         <div className="waitr-details_experience-box_rating">
-                            <span className="waitr-details__experience-number">{five_star_ratings}</span>
+                            <span className="waitr-details__experience-number">{five_star_ratings ? five_star_ratings : 0}</span>
                             <span className="waitr-details__experience-title">5 Star Rating</span>
                          </div>
                         <div className="waitr-details_experience-box_service">
-                            <span className="waitr-details__experience-number">{great_service}</span>
+                            <span className="waitr-details__experience-number">{great_service ? great_service : 0}</span>
                             <span className="waitr-details__experience-title">Great Service</span>
                         </div>
                         <div className="waitr-details_experience-box_greats">
-                            <span className="waitr-details__experience-number">{greats}</span>
+                            <span className="waitr-details__experience-number">{greats ? greats : 0}</span>
                             <span className="waitr-details__experience-title">Great</span>
                         </div>
                     </div>

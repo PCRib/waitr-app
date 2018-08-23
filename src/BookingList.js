@@ -7,7 +7,7 @@ export default class EventList  extends Component {
         const events = this.props.waitr_details.events
         const eventsArray = events.map(events => {
                 return(
-                        <BookingCard events={events}/>
+                        <BookingCard key={`${events._id}`} events={events}/>
                 )
             })
       return (

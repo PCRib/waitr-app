@@ -7,7 +7,7 @@ import EventList from './EventList'
 import EventDetails from './EventDetails'
 import WaitrList from './WaitrList'
 import WaitrDetails from './WaitrDetails'
-import EventModal from './EventModal'
+import ProfilePage from './ProfilePage'
 import HomePage from './HomePage';
 
 export default class MainSection  extends Component {
@@ -16,12 +16,12 @@ export default class MainSection  extends Component {
     return (
         <Router>
             <div className="main">
-                {/* <Header/> */}
+                <Header current_waitr={this.props.current_waitr}/>
                 <div className="main-section">
                     <Switch>
                         <Route path="/" exact render={(props)=> {
                             return(
-                                <HomePage isOpen={this.props.isOpen} handleClose={this.props.handleClose} handleOpen={this.props.handleOpen}/>
+                                <HomePage isWaitrOpen={this.props.isWaitrOpen} handleClose={this.props.handleClose} handleOpen={this.props.handleOpen} handleWaitrOpen={this.props.handleWaitrOpen}/>
                             )
                         }} />
                         <Route path="/events" exact render={(props)=>{
@@ -42,6 +42,11 @@ export default class MainSection  extends Component {
                         <Route path="/waitr/:id" render={(props) =>{
                                     return(
                                         <WaitrDetails match={props.match} getTheWaitr={this.props.getTheWaitr} waitr_details={this.props.waitr_details} waitrs={this.props.waitrs} />
+                                    );
+                                }} />
+                        <Route path="/profile/:id" exact render={(props) =>{
+                                    return(
+                                        <ProfilePage match={props.match}  getTheWaitr={this.props.getTheWaitr} waitr_details={this.props.waitr_details} waitrs={this.props.waitrs} />
                                     );
                                 }} />
                     </Switch>
