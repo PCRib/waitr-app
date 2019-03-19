@@ -6,7 +6,7 @@ export default class Footer extends Component {
         return(
             <div className="booked-events">
                 <div className="booked-events__date">
-                    <span className="booked-events__date-day"></span>
+                    <span className="booked-events__date-day"/>
                     <span className="booked-events__date-month">{event_date}</span>
                 </div>
                 <div className="booked-events__location">
