@@ -27,7 +27,7 @@ export default class EventModal extends Component {
       skills: skills,
       rating: rating
     };
-    fetch("http://localhost:5000/waitrs", {
+    fetch("/waitrs", {
       method: "post",
       body: JSON.stringify(newWaitr),
       headers: {
