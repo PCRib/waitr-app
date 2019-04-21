@@ -36,7 +36,7 @@ export default class EventModal extends Component {
       hourly_rate: hourly_rate,
       event_price: event_price
     };
-    fetch("http://localhost:3001/events", {
+    fetch("http://localhost:5000/events", {
       method: "post",
       body: JSON.stringify(newEvent),
       headers: {
